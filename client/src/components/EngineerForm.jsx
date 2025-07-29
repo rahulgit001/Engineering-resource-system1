@@ -1,6 +1,7 @@
 // client/src/components/EngineerForm.jsx
 import React, { useState } from "react";
 import axios from "axios";
+import { apiEndpoint } from "../constant/endpoint";
 
 const EngineerForm = ({ onAdd }) => {
   const [name, setName] = useState("");
@@ -14,7 +15,7 @@ const EngineerForm = ({ onAdd }) => {
       skills: skills.split(",").map(s => s.trim()),
       availability: parseInt(availability)
     };
-    const res = await axios.post("http://localhost:5000/api/engineers", engineer);
+    const res = await axios.post(`${apiEndpoint}/engineers`, engineer);
     onAdd(res.data);
     setName(""); setSkills(""); setAvailability("");
   };

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { apiEndpoint } from "../constant/endpoint";
 
 const ProjectForm = ({ onAdd }) => {
   const [title, setTitle] = useState("");
@@ -16,7 +17,7 @@ const ProjectForm = ({ onAdd }) => {
       deadline
     };
 
-    const res = await axios.post("http://localhost:5000/api/projects", project);
+    const res = await axios.post(`${apiEndpoint}/projects`, project);
     onAdd(res.data);
 
     // Reset fields

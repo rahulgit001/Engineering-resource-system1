@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import { CSVLink } from "react-csv";
+import { apiEndpoint } from "../constant/endpoint";
 
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
@@ -11,8 +12,8 @@ const AdminDashboard = () => {
   const [engineers, setEngineers] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/assignments").then((res) => setAssignments(res.data));
-    axios.get("http://localhost:5000/api/engineers").then((res) => setEngineers(res.data));
+    axios.get(`${apiEndpoint}/assignments`).then((res) => setAssignments(res.data));
+    axios.get(`${apiEndpoint}/engineers`).then((res) => setEngineers(res.data));
   }, []);
 
   const getEngineerUtil = () => {

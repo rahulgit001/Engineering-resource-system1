@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { apiEndpoint } from "../constant/endpoint";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -13,7 +14,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", { email, password });
+      const res = await axios.post(`${apiEndpoint}/auth/login`, { email, password });
       login(res.data);
       if (res.data.role === "admin") {
           navigate("/admin-dashboard");

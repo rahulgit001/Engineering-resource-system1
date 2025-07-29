@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { apiEndpoint } from "../constant/endpoint";
 
 const AssignmentForm = ({ onAssign }) => {
   const [engineers, setEngineers] = useState([]);
@@ -10,14 +11,14 @@ const AssignmentForm = ({ onAssign }) => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/engineers").then((res) => setEngineers(res.data));
-    axios.get("http://localhost:5000/api/projects").then((res) => setProjects(res.data));
+    axios.get(`${apiEndpoint}/engineers`).then((res) => setEngineers(res.data));
+    axios.get(`${apiEndpoint}/projects`).then((res) => setProjects(res.data));
   }, []);
 
   const handleSubmit = async (e) => {
   e.preventDefault();
   try {
-    await axios.post("http://localhost:5000/api/assignments", {
+    await axios.post(`${apiEndpoint}/assignments`, {
       engineerId,
       projectId,
       allocatedPercent: parseInt(allocatedPercent),

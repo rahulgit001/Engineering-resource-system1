@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { apiEndpoint } from "../constant/endpoint";
 
 const AssignmentList = ({ refresh }) => {
   const [assignments, setAssignments] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/assignments").then((res) => setAssignments(res.data));
+    axios.get(`${apiEndpoint}/assignments`).then((res) => setAssignments(res.data));
   }, [refresh]);
 
   return (
